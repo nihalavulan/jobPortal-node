@@ -46,4 +46,8 @@ router.get('/logout',(req,res)=>{
     req.session.destroy()
     res.redirect('/admin')
 })
+
+router.get('/settings',(req,res)=>{
+    res.render('admin/settings',{adminH:true})
+})
 module.exports = router;
