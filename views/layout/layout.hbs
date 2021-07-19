@@ -5,16 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>job Portal</title>
+
+    <link href="../../admin/css/app.css" rel="stylesheet">
 </head>
 <body>
-    {{#if user}}
+    {{#if userH}}
     {{> user/header}}
-    {{else if employer}}
+    {{else if employerH}}
     {{> employer/header}}
-    {{else if admin}}
+    {{else if adminH}}
     {{> admin/header}}
     {{/if}}
     {{{body}}}
 
+
+    <script src="../../admin/js/app.js"></script>
 </body>
 </html>
