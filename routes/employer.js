@@ -2,6 +2,14 @@ var express = require('express');
 const employerHelper = require('../helpers/employer-helper');
 var router = express.Router();
 
+const verifyLogIn = ((req, res, next) => {
+  if (req.session.loggedIn) {
+    next()
+  } else {
+    res.redirect('/employer/login')
+  }
+})
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   employer = req.session.employer
@@ -12,20 +20,24 @@ router.get('/', function(req, res, next) {
   }
 });
 
-router.get('/jobs',(req,res)=>{
-  res.render('employer/jobs',{employerH:true})
+router.get('/jobs',verifyLogIn,(req,res)=>{
+  employer = req.session.employer
+  res.render('employer/jobs',{employerH:true,employer})
 })
 
-router.get('/resume-requests',(req,res)=>{
-  res.render('employer/resume-requests',{employerH:true})
+router.get('/resume-requests',verifyLogIn,(req,res)=>{
+  employer = req.session.employer
+  res.render('employer/resume-requests',{employerH:true,employer})
 })
 
-router.get('/approved-resumes',(req,res)=>{
-  res.render('employer/approved-resumes',{employerH:true})
+router.get('/approved-resumes',verifyLogIn,(req,res)=>{
+  employer = req.session.employer
+  res.render('employer/approved-resumes',{employerH:true,employer})
 })
 
-router.get('/rejected-resumes',(req,res)=>{
-  res.render('employer/rejected-resumes',{employerH:true})
+router.get('/rejected-resumes',verifyLogIn,(req,res)=>{
+  employer = req.session.employer
+  res.render('employer/rejected-resumes',{employerH:true,employer})
 })
 
 
@@ -75,6 +87,7 @@ router.post('/register',(req,res)=>{
 
 //employer logout
 router.get('/logout',(req,res)=>{
-  
+  req.session.destroy()
+  res.redirect('/employer')
 })
 module.exports = router;
