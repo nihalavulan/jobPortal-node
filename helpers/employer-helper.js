@@ -14,5 +14,27 @@ module.exports={
                })
             })
         })
+    },
+    doLogin:(employerData)=>{
+        return new Promise(async(resolve,reject)=>{
+            let response = {}
+            let employer =await db.get().collection(collection.EMPLOYER_COLLECTION).findOne({email:employerData.email})
+            if(employer){
+                bcrypt.compare(employerData.password,employer.password).then((status)=>{
+                    if(status){
+                        console.log("login success");
+                        response.employer = employer
+                        response.status = true
+                        resolve(response)
+                    }else{
+                        console.log("Incorrect Password");
+                        resolve({status:false,Errmsg : "Incorrect Password"})
+                    }
+                })
+            }else{
+                console.log("Your account not found");
+                resolve({status:false,Errmsg : "Your account not found"})
+            }
+        })
     }
 }
