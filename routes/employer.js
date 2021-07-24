@@ -20,6 +20,8 @@ router.get('/', function(req, res, next) {
   }
 });
 
+
+//employer pages
 router.get('/jobs',verifyLogIn,(req,res)=>{
   employer = req.session.employer
   res.render('employer/jobs',{employerH:true,employer})
