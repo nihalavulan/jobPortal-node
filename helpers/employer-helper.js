@@ -2,6 +2,7 @@ var bcrypt = require('bcrypt')
 var db = require('../config/connection')
 var collection = require('../config/collection')
 const { ObjectId } = require('mongodb')
+const { enable } = require('debug')
 
 
 module.exports={
@@ -35,6 +36,19 @@ module.exports={
                 console.log("Your account not found");
                 resolve({status:false,Errmsg : "Your account not found"})
             }
+        })
+    },
+    addJob:(jobDetails)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.JOBS_COLLECTION).insertOne(jobDetails).then(({insertedId})=>{
+                resolve(insertedId)
+            })
+        })
+    },
+    getAllJobs:()=>{
+        return new Promise(async(resolve,reject)=>{
+           let allJobs =await  db.get().collection(collection.JOBS_COLLECTION).find().toArray()
+           resolve(allJobs)
         })
     }
 }

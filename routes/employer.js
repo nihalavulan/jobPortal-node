@@ -1,6 +1,17 @@
 var express = require('express');
+const { ObjectId } = require('mongodb');
 const employerHelper = require('../helpers/employer-helper');
 var router = express.Router();
+
+
+
+
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = dd + '/' + mm + '/' + yyyy;
 
 const verifyLogIn = ((req, res, next) => {
   if (req.session.loggedIn) {
@@ -23,8 +34,10 @@ router.get('/', function(req, res, next) {
 
 //employer pages
 router.get('/jobs',verifyLogIn,(req,res)=>{
+  employerHelper.getAllJobs().then((allJobs)=>{
   employer = req.session.employer
-  res.render('employer/jobs',{employerH:true,employer})
+  res.render('employer/jobs',{employerH:true,employer,allJobs})
+  })
 })
 
 router.get('/resume-requests',verifyLogIn,(req,res)=>{
@@ -99,6 +112,19 @@ router.get('/add-job',verifyLogIn,(req,res)=>{
   res.render('employer/add-job',{employerH:true,employer})
 })
 router.post('/add-job',verifyLogIn,(req,res)=>{
-  console.log("job details : ",req.body);
+  employerId = req.session.employer._id
+  jobDetails = {...req.body,employerId,createdAt:today}
+  employerHelper.addJob(jobDetails).then((jobId)=>{
+    res.redirect('/employer/jobs')
+    if(req.files.Image){
+      let image = req.files.Image
+      image.mv('./public/uploads/job-images/' + jobId + '.jpg')
+      console.log("image success");
+    }else{
+      console.log("image upload error");
+    }
+  })
 })
+
+
 module.exports = router;
