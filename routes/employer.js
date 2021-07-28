@@ -92,4 +92,13 @@ router.get('/logout',(req,res)=>{
   req.session.destroy()
   res.redirect('/employer')
 })
+
+
+//emplyers CRUD
+router.get('/add-job',verifyLogIn,(req,res)=>{
+  res.render('employer/add-job',{employerH:true,employer})
+})
+router.post('/add-job',verifyLogIn,(req,res)=>{
+  console.log("job details : ",req.body);
+})
 module.exports = router;
