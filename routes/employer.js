@@ -126,5 +126,11 @@ router.post('/add-job',verifyLogIn,(req,res)=>{
   })
 })
 
+router.get('/delete-job',(req,res)=>{
+  id = req.query.id
+  employerHelper.deleteJob(id).then(()=>{
+    res.redirect('/employer/jobs')
+  })
+})
 
 module.exports = router;

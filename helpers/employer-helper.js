@@ -50,5 +50,12 @@ module.exports={
            let allJobs =await  db.get().collection(collection.JOBS_COLLECTION).find().toArray()
            resolve(allJobs)
         })
+    },
+    deleteJob:(jobId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.JOBS_COLLECTION).deleteOne({_id:ObjectId(jobId)}).then((response)=>{
+                resolve()
+            })
+        })
     }
 }

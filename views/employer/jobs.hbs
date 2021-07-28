@@ -27,8 +27,8 @@
                                 </div>
                             </div>
                             <div class="items-link f-right">
-                                <a href="job_details.html" class="bg-warning text-light border border-dark">Edit Job</a>
-                                <a href="job_details.html" class="bg-danger text-light border border-dark">Delete Job</a>
+                                <a href="/employer/edit-job?id={{this._id}}" class="bg-warning text-light border border-dark">Edit Job</a>
+                                <a href="/employer/delete-job?id={{this._id}}" class="bg-danger text-light border border-dark" onclick="return confirm('are you sure?')">Delete Job</a>
 
                                 <span>Created on : {{this.createdAt}}</span>
                             </div>
