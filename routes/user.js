@@ -1,4 +1,5 @@
 var express = require('express');
+const employerHelper = require('../helpers/employer-helper');
 const userHelper = require('../helpers/user-helper');
 var router = express.Router();
 
@@ -24,5 +25,11 @@ router.get('/contact',(req,res)=>{
   res.render('user/contact',{userH:true,userF:true})
 })
 
+router.get('/jobdetails',(req,res)=>{
+  jobId = req.query.id
+  employerHelper.findJob(jobId).then((jobDetails)=>{
+    res.render('user/jobdetails',{userH:true,userF:true,jobDetails})
+  })
+})
 
 module.exports = router;
