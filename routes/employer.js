@@ -14,7 +14,7 @@ var yyyy = today.getFullYear();
 today = dd + '/' + mm + '/' + yyyy;
 
 const verifyLogIn = ((req, res, next) => {
-  if (req.session.loggedIn) {
+  if (req.session.employer) {
     next()
   } else {
     res.redirect('/employer/login')
@@ -71,7 +71,6 @@ router.post('/login',(req,res)=>{
   employerHelper.doLogin(req.body).then((response)=>{
     if(response.status){
       req.session.employer = response.employer
-      req.session.loggedIn = true
       res.redirect('/employer')
     }else{
       req.session.logginErr = response.Errmsg
@@ -93,9 +92,9 @@ router.get('/register',(req,res)=>{
   }
 })
 router.post('/register',(req,res)=>{
-  employerHelper.doRegister(req.body).then((employer)=>{
+  employerDetails = {...req.body,createdAt:today}
+  employerHelper.doRegister(employerDetails).then((employer)=>{
     req.session.employer = employer
-    req.session.loggedIn = true
     res.redirect('/employer')
   }) 
 })
@@ -133,4 +132,17 @@ router.get('/delete-job',(req,res)=>{
   })
 })
 
+router.get('/edit-job',verifyLogIn,(req,res)=>{
+  id = req.query.id
+  employerHelper.findJob(id).then((jobDetails)=>{
+    res.render('employer/edit-job',{jobDetails,employerH:true})
+  })
+})
+router.post('/edit-job',(req,res)=>{
+  jobId = req.query.id
+  console.log(">>idddddddddd",req.query.id);
+  employerHelper.editJob(req.body,jobId).then(()=>{
+    res.redirect('/employer/jobs')
+  })
+})
 module.exports = router;

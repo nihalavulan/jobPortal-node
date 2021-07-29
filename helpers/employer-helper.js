@@ -57,5 +57,35 @@ module.exports={
                 resolve()
             })
         })
+    },
+    findJob:(jobId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.JOBS_COLLECTION).findOne({_id:ObjectId(jobId)}).then((jobDetails)=>{
+                resolve(jobDetails)
+            })
+        })
+    },
+    editJob:(jobDetails,jobId)=>{
+        return new Promise((resolve,reject)=>{
+            console.log(">>>",jobId);
+            db.get().collection(collection.JOBS_COLLECTION).updateOne({_id:ObjectId(jobId)},{
+                $set:{
+                    instName:jobDetails.instName,
+                    instLoc:jobDetails.instLoc,
+                    jobName:jobDetails.jobName,
+                    timeSchedule:jobDetails.timeSchedule,
+                    skills:jobDetails.skills,
+                    qualifications:jobDetails.qualifications,
+                    expreq:jobDetails.expreq,
+                    lang:jobDetails.lang,
+                    pin:jobDetails.pin,
+                    description:jobDetails.description,
+                }
+            }).then((response)=>{
+                console.log(response);
+                resolve()
+            })
+        })
     }
+
 }
