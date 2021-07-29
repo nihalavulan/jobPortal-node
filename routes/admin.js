@@ -1,6 +1,18 @@
 var express = require('express');
 const adminHelpers = require('../helpers/admin-helpers');
+const employerHelper = require('../helpers/employer-helper');
+var fs = require('fs')
 var router = express.Router();
+
+
+const verifyLogIn = ((req, res, next) => {
+    if (req.session.admin) {
+      next()
+    } else {
+      res.redirect('/admin/login')
+    }
+  })
+  
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -12,11 +24,13 @@ router.get('/', function(req, res, next) {
   }  
 });
 
-router.get('/employers',(req,res)=>{
-    res.render('admin/employers',{adminH:true})
+router.get('/employers',verifyLogIn,(req,res)=>{
+    adminHelpers.getAllEmployers().then((allEmployers)=>{
+        res.render('admin/employers',{adminH:true,allEmployers})
+    })
 })
 
-router.get('/users',(req,res)=>{
+router.get('/users',verifyLogIn,(req,res)=>{
     res.render('admin/users',{adminH:true})
 })
 
@@ -45,7 +59,26 @@ router.get('/logout',(req,res)=>{
     res.redirect('/admin')
 })
 
-router.get('/settings',(req,res)=>{
+router.get('/settings',verifyLogIn,(req,res)=>{
     res.render('admin/settings',{adminH:true})
+})
+
+
+router.get('/view-jobs',verifyLogIn,(req,res)=>{
+    employerId = req.query.id
+    employerHelper.getEmployersJobs(employerId).then((employerJobs)=>{
+        res.render('admin/view-job',{adminH:true,employerJobs,employerId})
+    })
+})
+router.get('/delete-job',verifyLogIn,(req,res)=>{
+    id = req.query.id
+    employerId = req.query.employerId
+    employerHelper.deleteJob(id).then(()=>{
+    fs.unlink('./public/uploads/job-images/' + id + '.jpg',function(err){
+      if(err) console.log("Image delete error",err);
+      res.redirect(`/admin/view-jobs?id=${employerId}`)
+      console.log('Image deleted successfully')
+    })
+  })
 })
 module.exports = router;

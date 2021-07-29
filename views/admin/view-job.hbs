@@ -1,0 +1,38 @@
+        <div class="row">
+                    <div class="col-lg-12 m-2">
+                        
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-xl-10">
+                        {{#each employerJobs}}
+                        <!-- single-job-content -->
+                        <div class="single-job-items mb-30 bg-light shadow-sm rounded">
+                            <div class="job-items">
+                                <div class="company-img">
+                                    <a href="job_details.html"><img src="../../uploads/job-images/{{this._id}}.jpg" alt="company-logo" style="width: 100px;height: 100px;"></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <a href=""><h4>{{this.jobName}}</h4></a>
+                                    <ul>
+                                        <li><i class="fas fa-globe"></i>{{this.instName}}</li>
+                                        <li><i class="fas fa-map-marker-alt"></i>{{this.instLoc}}</li>
+                                    </ul>
+                                    <ul class="mt-1">
+                                        <li><i class="fas fa-language"></i>{{this.lang}}</li>
+                                        <li><i class="fas fa-clock"></i>{{this.timeSchedule}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="items-link f-right">
+                                <a href="/admin/delete-job?id={{this._id}}&employerId={{employerId}}" class="bg-danger text-light border border-dark" onclick="return confirm('are you sure?')">Remove Job</a>
+
+                                <span>Created on : {{this.createdAt}}</span>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+
+		</div>
+	</div>

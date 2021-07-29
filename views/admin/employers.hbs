@@ -17,16 +17,18 @@
 										</tr>
 									</thead>
 									<tbody>
+										{{#each allEmployers}}
 										<tr>
-											<td class="text-success"><b>Nihal Avulan</b></td>
-											<td class="d-none d-xl-table-cell">nihalavulan1@gmail.com</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td><a href="" class="text-primary">View jobs</a></td>
+											<td class="text-success"><b>{{this.name}}</b></td>
+											<td class="d-none d-xl-table-cell">{{this.email}}</td>
+											<td class="d-none d-xl-table-cell">{{this.createdAt}}</td>
+											<td><a href="/admin/view-jobs?id={{this._id}}" class="text-primary">View jobs</a></td>
 											<td class="d-none d-md-table-cell">
 												<a href="" class="p-2 bg-warning m-1" data-toggle="tooltip" data-placement="top" title="Ban Employer"><i class="align-middle" data-feather="eye-off"></i></a>
 												<a href="" class="p-2 bg-danger m-1"  data-toggle="tooltip" data-placement="top" title="Delete Employer"><i class="align-middle" data-feather="delete"></i></a>
 											</td>
 										</tr>
+										{{/each}}
 										
 									</tbody>
 								</table>

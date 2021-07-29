@@ -1,5 +1,6 @@
 var db = require('../config/connection')
 var bcrypt = require('bcrypt')
+const collection = require('../config/collection')
 module.exports={
     doLogin:(adminData)=>{
         return new Promise(async(resolve,reject)=>{
@@ -21,6 +22,12 @@ module.exports={
                 console.log("Admin not Found");
                 resolve({status:false,Errmsg : "Admin not Found"})
             }
+        })
+    },
+    getAllEmployers:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let employers =await db.get().collection(collection.EMPLOYER_COLLECTION).find().toArray()
+            resolve(employers)
         })
     }
 }
