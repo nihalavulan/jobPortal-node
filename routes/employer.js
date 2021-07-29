@@ -102,7 +102,7 @@ router.post('/register',(req,res)=>{
 
 //employer logout
 router.get('/logout',(req,res)=>{
-  req.session.destroy()
+  delete req.session.employer
   res.redirect('/employer')
 })
 

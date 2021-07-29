@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    let admin = req.session.loggedIn
+    let admin = req.session.admin
   if(admin){
       res.render('admin/home',{adminH:true})
   }else{
@@ -31,7 +31,6 @@ router.get('/login',(req,res)=>{
 router.post('/login',(req,res)=>{
         adminHelpers.doLogin(req.body).then((response)=>{
             if(response.status){
-                req.session.loggedIn = true
                 req.session.admin = response.admin
                 res.redirect('/admin')
             }else{
@@ -42,8 +41,7 @@ router.post('/login',(req,res)=>{
 })
 
 router.get('/logout',(req,res)=>{
-    req.session.logedIn = false
-    req.session.destroy()
+    delete req.session.admin
     res.redirect('/admin')
 })
 
