@@ -2,7 +2,7 @@ var express = require('express');
 const { ObjectId } = require('mongodb');
 const employerHelper = require('../helpers/employer-helper');
 var router = express.Router();
-
+var fs = require('fs')
 
 
 
@@ -128,7 +128,11 @@ router.post('/add-job',verifyLogIn,(req,res)=>{
 router.get('/delete-job',(req,res)=>{
   id = req.query.id
   employerHelper.deleteJob(id).then(()=>{
-    res.redirect('/employer/jobs')
+    fs.unlink('./public/uploads/job-images/' + id + '.jpg',function(err){
+      if(err) console.log("Image delete error",err);
+      res.redirect('/employer/jobs')
+      console.log('Image deleted successfully')
+    })
   })
 })
 
@@ -140,7 +144,6 @@ router.get('/edit-job',verifyLogIn,(req,res)=>{
 })
 router.post('/edit-job',(req,res)=>{
   jobId = req.query.id
-  console.log(">>idddddddddd",req.query.id);
   employerHelper.editJob(req.body,jobId).then(()=>{
     res.redirect('/employer/jobs')
   })
