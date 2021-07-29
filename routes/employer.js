@@ -146,6 +146,13 @@ router.post('/edit-job',(req,res)=>{
   jobId = req.query.id
   employerHelper.editJob(req.body,jobId).then(()=>{
     res.redirect('/employer/jobs')
+    if(req.files.Image){
+      let image = req.files.Image
+      image.mv('./public/uploads/job-images/' + jobId + '.jpg')
+      console.log("image success");
+    }else{
+      console.log("image upload error");
+    }
   })
 })
 module.exports = router;
