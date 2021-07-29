@@ -34,7 +34,8 @@ router.get('/', function(req, res, next) {
 
 //employer pages
 router.get('/jobs',verifyLogIn,(req,res)=>{
-  employerHelper.getAllJobs().then((allJobs)=>{
+  employerId = req.session.employer._id
+  employerHelper.getEmployersJobs(employerId).then((allJobs)=>{
   employer = req.session.employer
   res.render('employer/jobs',{employerH:true,employer,allJobs})
   })

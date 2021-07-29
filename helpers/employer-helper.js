@@ -45,9 +45,9 @@ module.exports={
             })
         })
     },
-    getAllJobs:()=>{
+    getEmployersJobs:(employerId)=>{
         return new Promise(async(resolve,reject)=>{
-           let allJobs =await  db.get().collection(collection.JOBS_COLLECTION).find().toArray()
+           let allJobs =await  db.get().collection(collection.JOBS_COLLECTION).find({employerId}).toArray()
            resolve(allJobs)
         })
     },
