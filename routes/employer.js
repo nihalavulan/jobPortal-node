@@ -65,8 +65,8 @@ router.get('/login',(req,res)=>{
   if(emp){
     res.redirect('/employer')
   }else{
-    res.render('employer/login',{msg:req.session.logginErr})
-    req.session.logginErr=false
+    res.render('employer/login',{msg:req.session.empLogginErr})
+    req.session.empLogginErr=false
   }
 })
 router.post('/login',(req,res)=>{
@@ -75,7 +75,7 @@ router.post('/login',(req,res)=>{
       req.session.employer = response.employer
       res.redirect('/employer')
     }else{
-      req.session.logginErr = response.Errmsg
+      req.session.empLogginErr = response.Errmsg
       res.redirect('/employer/login')
     }
   })

@@ -49,8 +49,8 @@ router.get('/login',(req,res)=>{
   if(req.session.user){
     res.render('/')
   }else{
-    res.render('user/login',{msg:req.session.logginErr})
-    req.session.logginErr=false
+    res.render('user/login',{msg:req.session.userLogginErrr})
+    req.session.userLogginErrr=false
   }
 })
 router.post('/login',(req,res)=>{
@@ -59,7 +59,7 @@ router.post('/login',(req,res)=>{
       req.session.user = response.user
       res.redirect('/')
     }else{
-      req.session.logginErr = response.Errmsg
+      req.session.userLogginErrr = response.Errmsg
       res.redirect('/login')
     }
   })
@@ -67,7 +67,7 @@ router.post('/login',(req,res)=>{
 
 
 router.get('/register',(req,res)=>{
-  res.render('user/register',{msg:req.session.logginErr})
+  res.render('user/register',{msg:req.session.userLogginErrr})
 })
 router.post('/register',(req,res)=>{
   userHelper.checkUser(req.body.Email).then((response)=>{
@@ -78,7 +78,7 @@ router.post('/register',(req,res)=>{
       res.redirect('/')
     })
     }else{
-      req.session.logginErr = response.Errmsg
+      req.session.userLogginErrr = response.Errmsg
       res.redirect('/register')
     }
   })

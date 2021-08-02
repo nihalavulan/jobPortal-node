@@ -38,8 +38,8 @@ router.get('/login',(req,res)=>{
     if(req.session.admin){
         res.redirect('/admin')
     }else{
-        res.render('admin/login',{msg:req.session.logginErr})
-        req.session.logginErr=false
+        res.render('admin/login',{msg:req.session.adminLogginErr})
+        req.session.adminLogginErr=false
     }
 })
 router.post('/login',(req,res)=>{
@@ -48,7 +48,7 @@ router.post('/login',(req,res)=>{
                 req.session.admin = response.admin
                 res.redirect('/admin')
             }else{
-                req.session.logginErr = response.Errmsg
+                req.session.adminLogginErr = response.Errmsg
                 res.redirect('/admin/login')
             }
          })
