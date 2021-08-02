@@ -52,10 +52,10 @@ module.exports={
     checkUser:(userEmail)=>{
         return new Promise((resolve,reject)=>{
             db.get().collection(collection.USERS_COLLECTION).findOne({Email:userEmail}).then((res)=>{
-                if(res === undefined){
-                    resolve({status:false,Errmsg:"User already exist"})
+                if(!res){
+                    resolve({status:true})
                 }else{
-                    resolve({status})
+                    resolve({status:false,Errmsg:"Email already Exist"})
                 }
             })
         })

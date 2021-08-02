@@ -70,8 +70,8 @@ router.get('/register',(req,res)=>{
   res.render('user/register',{msg:req.session.logginErr})
 })
 router.post('/register',(req,res)=>{
-  userHelper.checkUser(req.body.Email).then((status)=>{
-    if(status){
+  userHelper.checkUser(req.body.Email).then((response)=>{
+    if(response.status){
       userDetails = {...req.body,createdAt:today}  
     userHelper.doRegister(userDetails).then((user)=>{
       req.session.user = user
