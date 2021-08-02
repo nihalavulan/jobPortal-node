@@ -1,96 +1,107 @@
 <!-- Hero Area Start-->
-        <div class="slider-area ">
-        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hero-cap text-center">
-                            <h2>{{jobDetails.jobName}}</h2>
-                        </div>
-                    </div>
-                </div>
+<div class="slider-area">
+  <div
+    class="single-slider section-overly slider-height2 d-flex align-items-center"
+    data-background="assets/img/hero/about.jpg"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="hero-cap text-center">
+            <h2>{{jobDetails.jobName}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Hero Area End -->
+<!-- job post company Start -->
+<div class="job-post-company pt-120 pb-120">
+  <div class="container">
+    <div class="row justify-content-between">
+      <!-- Left Content -->
+      <div class="col-xl-7 col-lg-8">
+        <!-- job single -->
+        <div class="single-job-items mb-50">
+          <div class="job-items">
+            <div class="company-img company-img-details">
+              <a href="#"><img
+                  src="../../uploads/job-images/{{jobDetails._id}}.jpg"
+                  alt=""
+                  width="100px"
+                  height="100px"
+                /></a>
             </div>
+            <div class="job-tittle">
+              <a href="/jobdetails?id={{jobDetails._id}}"><h4
+                >{{jobDetails.jobName}}</h4></a>
+              <ul>
+                <li><i class="fas fa-globe"></i>{{jobDetails.instName}}</li>
+                <li><i
+                    class="fas fa-map-marker-alt"
+                  ></i>{{jobDetails.instLoc}}</li>
+              </ul>
+              <ul class="mt-1">
+                <li><i class="fas fa-language"></i>{{jobDetails.lang}}</li>
+                <li><i class="fas fa-clock"></i>{{jobDetails.timeSchedule}}</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        </div>
-        <!-- Hero Area End -->
-        <!-- job post company Start -->
-        <div class="job-post-company pt-120 pb-120">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <!-- Left Content -->
-                    <div class="col-xl-7 col-lg-8">
-                        <!-- job single -->
-                        <div class="single-job-items mb-50">
-                            <div class="job-items">
-                                <div class="company-img company-img-details">
-                                    <a href="#"><img src="../../uploads/job-images/{{jobDetails._id}}.jpg" alt="" width="100px" height="100px"></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="/jobdetails?id={{jobDetails._id}}"><h4>{{jobDetails.jobName}}</h4></a>
-                                    <ul>
-                                        <li><i class="fas fa-globe"></i>{{jobDetails.instName}}</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>{{jobDetails.instLoc}}</li>
-                                    </ul>
-                                    <ul class="mt-1">
-                                        <li><i class="fas fa-language"></i>{{jobDetails.lang}}</li>
-                                        <li><i class="fas fa-clock"></i>{{jobDetails.timeSchedule}}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                          <!-- job single End -->
-                       
-                        <div class="job-post-details">
-                            <div class="post-details1 mb-50">
-                                <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Job Description</h4>
-                                </div>
-                                <p>{{jobDetails.description}}</p>
-                            </div>
-                            <div class="post-details2  mb-50">
-                                 <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Required Knowledge, Skills, and Abilities</h4>
-                                </div>
-                               <ul>
-                                   <li>{{jobDetails.skills}}</li>
-                               </ul>
-                            </div>
-                            <div class="post-details2  mb-50">
-                                 <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Qualification</h4>
-                                </div>
-                               <ul>
-                                   <li>{{jobDetails.qualifications}}</li>
-                               </ul>
-                            </div>
-                        </div>
+        <!-- job single End -->
 
-                    </div>
-                    <!-- Right Content -->
-                    <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50">
-                            <!-- Small Section Tittle -->
-                           <div class="small-section-tittle">
-                               <h4>Job Overview</h4>
-                           </div>
-                          <ul>
-                              <li>Posted date : <span>{{jobDetails.createdAt}}</span></li>
-                              <li>Location : <span>{{jobDetails.instLoc}}</span></li>
-                              <li>Experience : <span>{{jobDetails.expreq}}</span></li>
-                              <li>Job nature : <span>{{jobDetails.timeSchedule}}</span></li>
-                              <li>Lang :  <span>{{jobDetails.lang}}</span></li>
-                              <li>pin : <span>{{jobDetails.pin}}</span></li>
-                          </ul>
-                         <div class="apply-btn2">
-                            <a href="/apply-job?id={{this._id}}" class="btn">Apply Now</a>
-                         </div>
-                       </div>
-                       
-                    </div>
-                </div>
+        <div class="job-post-details">
+          <div class="post-details1 mb-50">
+            <!-- Small Section Tittle -->
+            <div class="small-section-tittle">
+              <h4>Job Description</h4>
             </div>
+            <p>{{jobDetails.description}}</p>
+          </div>
+          <div class="post-details2 mb-50">
+            <!-- Small Section Tittle -->
+            <div class="small-section-tittle">
+              <h4>Required Knowledge, Skills, and Abilities</h4>
+            </div>
+            <ul>
+              <li>{{jobDetails.skills}}</li>
+            </ul>
+          </div>
+          <div class="post-details2 mb-50">
+            <!-- Small Section Tittle -->
+            <div class="small-section-tittle">
+              <h4>Qualification</h4>
+            </div>
+            <ul>
+              <li>{{jobDetails.qualifications}}</li>
+            </ul>
+          </div>
         </div>
-        <!-- job post company End -->
+
+      </div>
+      <!-- Right Content -->
+      <div class="col-xl-4 col-lg-4">
+        <div class="post-details3 mb-50">
+          <!-- Small Section Tittle -->
+          <div class="small-section-tittle">
+            <h4>Job Overview</h4>
+          </div>
+          <ul>
+            <li>Posted date : <span>{{jobDetails.createdAt}}</span></li>
+            <li>Location : <span>{{jobDetails.instLoc}}</span></li>
+            <li>Experience : <span>{{jobDetails.expreq}}</span></li>
+            <li>Job nature : <span>{{jobDetails.timeSchedule}}</span></li>
+            <li>Lang : <span>{{jobDetails.lang}}</span></li>
+            <li>pin : <span>{{jobDetails.pin}}</span></li>
+          </ul>
+          <div class="apply-btn2">
+            <a href="/apply-job?id={{this._id}}" class="btn">Apply Now</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- job post company End -->
