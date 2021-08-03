@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>Apply for Accountant</h2>
+            <h2>Apply for {{jobDetails.jobName}}</h2>
           </div>
         </div>
       </div>
@@ -19,7 +19,7 @@
 <!-- job post company Start -->
 <div class="job-post-company pt-120 pb-120">
   <div class="container">
-    <form action="">
+    <form action="/apply-job">
       <div class="row justify-content-between">
         <!-- Left Content -->
 
@@ -32,7 +32,6 @@
               type="text"
               name="fName"
               placeholder="First Name"
-              onfocus="this.placeholder = ''"
               required
               class="single-input"
             />
@@ -42,7 +41,6 @@
               type="text"
               name="lName"
               placeholder="Last Name"
-              onfocus="this.placeholder = ''"
               required
               class="single-input"
             />
@@ -52,7 +50,6 @@
               type="email"
               name="email"
               placeholder="Email address"
-              onfocus="this.placeholder = ''"
               required
               class="single-input"
             />
@@ -62,7 +59,7 @@
               type="text"
               name="pTitle"
               placeholder="Profession title"
-              onfocus="this.placeholder = ''"
+              value="{{jobDetails.jobName}}"
               required
               class="single-input"
             />
@@ -72,7 +69,6 @@
               type="url"
               name="webLink"
               placeholder="Website/Portfolio Link"
-              onfocus="this.placeholder = ''"
               required
               class="single-input"
             />
@@ -82,7 +78,6 @@
               type="text"
               name="location"
               placeholder="Location"
-              onfocus="this.placeholder = ''"
               required
               class="single-input"
             />
@@ -92,7 +87,6 @@
               type="text"
               name="skills"
               placeholder="Skills"
-              onfocus="this.placeholder = ''"
               required
               class="single-input"
             />

@@ -100,7 +100,9 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/apply-job", verifyLogIn, (req, res) => {
-  res.render("user/apply-job", { userH: true, userF: true });
+  employerHelper.findJob(req.query.id).then((jobDetails)=>{
+    res.render("user/apply-job", { userH: true, userF: true,jobDetails });
+  })
 });
 
 module.exports = router;
