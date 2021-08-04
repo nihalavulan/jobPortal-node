@@ -117,5 +117,7 @@ router.post('/apply-job',verifyLogIn,(req,res)=>{
     }
   })
 })
-
+router.get('/apply-success',verifyLogIn,(req,res)=>{
+  res.render('user/apply-success',{ userH: true, userF: true })
+})
 module.exports = router;
