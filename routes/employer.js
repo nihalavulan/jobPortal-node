@@ -38,9 +38,12 @@ router.get("/jobs", verifyLogIn, (req, res) => {
   });
 });
 
+
 router.get("/resume-requests", verifyLogIn, (req, res) => {
   employer = req.session.employer;
-  res.render("employer/resume-requests", { employerH: true, employer });
+  employerHelper.getAllJobRequests(employer._id).then((resumeRequests)=>{
+    res.render("employer/resume-requests", { employerH: true, employer ,resumeRequests});
+  })
 });
 
 router.get("/approved-resumes", verifyLogIn, (req, res) => {

@@ -66,5 +66,6 @@ module.exports={
                 resolve(insertedId)
             })
         })
-    }
+    },
+    
 }

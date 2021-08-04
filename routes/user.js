@@ -100,14 +100,16 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/apply-job", verifyLogIn, (req, res) => {
+  userId = req.session.user._id
   employerHelper.findJob(req.query.id).then((jobDetails)=>{
-    res.render("user/apply-job", { userH: true, userF: true,jobDetails });
+    res.render("user/apply-job", { userH: true, userF: true,jobDetails,userId});
   })
 });
 router.post('/apply-job',verifyLogIn,(req,res)=>{
   let Image = req.files.Image
-  let Resume = req.files.Image
-  userHelper.addResumeRequest(req.body).then((id)=>{
+  let Resume = req.files.Resume
+  let userDetails = {...req.body,appliedOn:today}
+  userHelper.addResumeRequest(userDetails).then((id)=>{
     if(Image || Resume){
       Image.mv("./public/uploads/Resume-image/" + id + ".jpg");
       Resume.mv("./public/uploads/Resume-file/" + id + ".pdf");

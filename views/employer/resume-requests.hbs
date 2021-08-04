@@ -1,41 +1,44 @@
-			<main class="content">
-				<div class="container-fluid p-0">
-
-					<h1 class="h3 mb-3"><strong>Total</strong> Jobs</h1>
-
-				<h1>Thiss is REsume Requests</h1>
-					
-
-
-				</div>
-			</main>
-
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit Demo</strong></a> &copy;
-							</p>
+        <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle text-left m-4">
+							<h4>All Resume Requests :</h2>
 						</div>
-						<div class="col-6 text-end">
-							<ul class="list-inline">
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</footer>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-xl-10">
+                        {{#each resumeRequests}}
+                        <!-- single-job-content -->
+                        <div class="single-job-items mb-30 bg-light shadow-sm rounded">
+                            <div class="job-items">
+                                <div class="company-img">
+                                    <a href="job_details.html"><img src="../../uploads/Resume-image/{{this._id}}.jpg" alt="company-logo" style="width: 100px;height: 100px;"></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <a href=""><h4>{{this.fName}} {{this.lName}}</h4></a>
+                                    <ul>
+                                        <li><i class="fas fa-envelope"></i>{{this.email}}</li>
+                                        <li><i class="fas fa-map-marker-alt"></i>{{this.location}}</li>
+                                    </ul>
+                                    <ul class="mt-1">
+                                        <li><i class="fas fa-globe"></i><a target="_blank" class="text-primary" href="{{this.webLink}}">Website/Portfolio</a></li>
+                                    </ul>
+									<ul class="mt-3">
+                                        <li><i class="fas fa-file"></i><a target="_blank" class="text-primary" href="../../uploads/Resume-file/{{this._id}}.pdf">View Resume</a></li>
+                                       <span class="">Applied For : <b>{{this.pTitle}}</b></span>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="items-link f-right">
+                                <a href="/employer/edit-job?id={{this._id}}" class="bg-success text-light border border-dark">Approve</a>
+                                <a href="/employer/delete-job?id={{this._id}}" class="bg-danger text-light border border-dark" onclick="return confirm('are you sure?')">Reject</a>
+
+                                <span>Applied on : {{this.appliedOn}}</span>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+
 		</div>
 	</div>
