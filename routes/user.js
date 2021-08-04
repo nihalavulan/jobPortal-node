@@ -112,6 +112,7 @@ router.post('/apply-job',verifyLogIn,(req,res)=>{
       Image.mv("./public/uploads/Resume-image/" + id + ".jpg");
       Resume.mv("./public/uploads/Resume-file/" + id + ".pdf");
       console.log("Moved Successfully");
+      res.redirect('/apply-success')
     }else{
       console.log("Resume Request Upload error");
     }
