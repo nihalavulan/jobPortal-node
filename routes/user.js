@@ -104,5 +104,18 @@ router.get("/apply-job", verifyLogIn, (req, res) => {
     res.render("user/apply-job", { userH: true, userF: true,jobDetails });
   })
 });
+router.post('/apply-job',verifyLogIn,(req,res)=>{
+  let Image = req.files.Image
+  let Resume = req.files.Image
+  userHelper.addResumeRequest(req.body).then((id)=>{
+    if(Image || Resume){
+      Image.mv("./public/uploads/Resume-image/" + id + ".jpg");
+      Resume.mv("./public/uploads/Resume-file/" + id + ".pdf");
+      console.log("Moved Successfully");
+    }else{
+      console.log("Resume Request Upload error");
+    }
+  })
+})
 
 module.exports = router;

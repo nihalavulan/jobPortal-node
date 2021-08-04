@@ -59,5 +59,12 @@ module.exports={
                 }
             })
         })
+    },
+    addResumeRequest:(userDetails)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.RESUME_REQUESTS).insertOne(userDetails).then(({insertedId})=>{
+                resolve(insertedId)
+            })
+        })
     }
 }
