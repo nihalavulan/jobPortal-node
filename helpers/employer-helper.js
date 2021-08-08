@@ -89,8 +89,7 @@ module.exports={
     },
     getAllJobRequests:(employerId)=>{
         return new Promise((resolve,reject)=>{
-            console.log("AJDFAJJF :",employerId);
-            db.get().collection(collection.RESUME_REQUESTS).find({employerId:employerId}).toArray().then((response)=>{
+            db.get().collection(collection.RESUME_REQUESTS).find({employerId:ObjectId(employerId)}).toArray().then((response)=>{
                 resolve(response)
             })
         })
