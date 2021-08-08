@@ -62,10 +62,33 @@ module.exports={
     },
     addResumeRequest:(userDetails)=>{
         return new Promise((resolve,reject)=>{
+            userDetails.userId =ObjectId(userDetails.userId)
+            userDetails.jobId =ObjectId(userDetails.jobId)
+            userDetails.employerId =ObjectId(userDetails.employerId)
             db.get().collection(collection.RESUME_REQUESTS).insertOne(userDetails).then(({insertedId})=>{
                 resolve(insertedId)
             })
         })
     },
-    
+    getAppliedJobs:(userId)=>{
+        return new Promise(async(resolve,reject)=>{
+            let jobs =await db.get().collection(collection.RESUME_REQUESTS).aggregate([
+                {
+                    $match:{userId:ObjectId(userId)}
+                },
+                {
+                    $lookup:{
+                        from:collection.JOBS_COLLECTION,
+                        localField:"jobId",
+                        foreignField:"_id",
+                        as:"appliedJobs",
+                    }
+                }
+            ]).toArray()
+            allJobs = jobs.map(({appliedJobs})=>{
+                return appliedJobs[0]
+            })
+            resolve(allJobs)
+        })
+    }
 }

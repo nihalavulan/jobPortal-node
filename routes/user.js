@@ -1,3 +1,4 @@
+const { Router } = require("express");
 var express = require("express");
 const employerHelper = require("../helpers/employer-helper");
 const userHelper = require("../helpers/user-helper");
@@ -17,6 +18,7 @@ const verifyLogIn = (req, res, next) => {
     res.redirect("/login");
   }
 };
+
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -45,6 +47,12 @@ router.get("/find-job", verifyLogIn, (req, res) => {
 router.get("/about", verifyLogIn, (req, res) => {
   res.render("user/about", { userH: true, userF: true });
 });
+router.get('/applied-jobs',verifyLogIn,(req,res)=>{
+  userHelper.getAppliedJobs(req.session.user._id).then((appliedJobs)=>{
+    console.log("#####",appliedJobs);
+  res.render("user/applied-jobs", { userH: true, userF: true,appliedJobs });
+  })
+})
 router.get("/contact", verifyLogIn, (req, res) => {
   res.render("user/contact", { userH: true, userF: true });
 });
@@ -114,13 +122,10 @@ router.post('/apply-job',verifyLogIn,(req,res)=>{
       Image.mv("./public/uploads/Resume-image/" + id + ".jpg");
       Resume.mv("./public/uploads/Resume-file/" + id + ".pdf");
       console.log("Moved Successfully");
-      res.redirect('/apply-success')
+      res.render('user/apply-success',{ userH: true, userF: true })
     }else{
       console.log("Resume Request Upload error");
     }
   })
-})
-router.get('/apply-success',verifyLogIn,(req,res)=>{
-  res.render('user/apply-success',{ userH: true, userF: true })
 })
 module.exports = router;
