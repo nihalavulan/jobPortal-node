@@ -115,6 +115,21 @@ module.exports={
                 resolve(response)
             })
         })
+    },
+    rejectResumeRequest:(resumeId,resumeDetails)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.RESUME_REQUESTS).deleteOne({_id:ObjectId(resumeId)}).then(()=>{
+                db.get().collection(collection.REJECTED_REQUESTS).insertOne(resumeDetails)
+                resolve()
+            })
+        })
+    },
+    getAllRejectedRequests:(employerId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.REJECTED_REQUESTS).find({employerId:ObjectId(employerId)}).toArray().then((response)=>{
+                resolve(response)
+            })
+        })
     }
 
 }
