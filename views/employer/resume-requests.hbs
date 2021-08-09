@@ -30,8 +30,8 @@
                                 </div>
                             </div>
                             <div class="items-link f-right">
-                                <a href="/employer/edit-job?id={{this._id}}" class="bg-success text-light border border-dark">Approve</a>
-                                <a href="/employer/delete-job?id={{this._id}}" class="bg-danger text-light border border-dark" onclick="return confirm('are you sure?')">Reject</a>
+                                <a href="/employer/approve-request?id={{this._id}}" class="bg-success text-light border border-dark">Approve</a>
+                                <a href="/employer/reject-request?id={{this._id}}" class="bg-danger text-light border border-dark" onclick="return confirm('are you sure?')">Reject</a>
 
                                 <span>Applied on : {{this.appliedOn}}</span>
                             </div>

@@ -93,6 +93,30 @@ module.exports={
                 resolve(response)
             })
         })
+    },
+    findResume:(id)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.RESUME_REQUESTS).findOne({_id:ObjectId(id)}).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
+    approveResumeRequest:(resumeId,resumeDetails)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.RESUME_REQUESTS).deleteOne({_id:ObjectId(resumeId)}).then(()=>{
+                db.get().collection(collection.APPROVED_REQUESTS).insertOne(resumeDetails)
+                resolve()
+            })
+        })
+    },
+    getAllApprovedRequests:(employerId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.APPROVED_REQUESTS).find({employerId:ObjectId(employerId)}).toArray().then((response)=>{
+                resolve(response)
+            })
+        })
     }
 
 }
+
+

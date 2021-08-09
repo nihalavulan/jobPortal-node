@@ -48,7 +48,9 @@ router.get("/resume-requests", verifyLogIn, (req, res) => {
 
 router.get("/approved-resumes", verifyLogIn, (req, res) => {
   employer = req.session.employer;
-  res.render("employer/approved-resumes", { employerH: true, employer });
+  employerHelper.getAllApprovedRequests(employer._id).then((approvedRequests)=>{
+    res.render("employer/approved-resumes", { employerH: true, employer,approvedRequests });
+  })
 });
 
 router.get("/rejected-resumes", verifyLogIn, (req, res) => {
@@ -150,4 +152,12 @@ router.post("/edit-job", (req, res) => {
     }
   });
 });
+
+router.get('/approve-request',verifyLogIn,async(req,res)=>{
+  let id=req.query.id
+  let resume =await employerHelper.findResume(id)
+  employerHelper.approveResumeRequest(id,resume).then(()=>{
+    res.redirect('/employer/resume-requests')
+  })
+})
 module.exports = router;
