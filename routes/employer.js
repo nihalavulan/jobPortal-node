@@ -169,4 +169,5 @@ router.get('/reject-request',verifyLogIn,async(req,res)=>{
     res.redirect('/employer/resume-requests')
   })
 })
+
 module.exports = router;

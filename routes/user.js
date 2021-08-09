@@ -49,7 +49,6 @@ router.get("/about", verifyLogIn, (req, res) => {
 });
 router.get('/applied-jobs',verifyLogIn,(req,res)=>{
   userHelper.getAppliedJobs(req.session.user._id).then((appliedJobs)=>{
-    console.log("#####",appliedJobs);
   res.render("user/applied-jobs", { userH: true, userF: true,appliedJobs });
   })
 })
@@ -72,6 +71,7 @@ router.get("/login", (req, res) => {
     req.session.userLogginErrr = false;
   }
 });
+
 router.post("/login", (req, res) => {
   userHelper.doLogin(req.body).then((response) => {
     if (response.status) {
@@ -87,6 +87,7 @@ router.post("/login", (req, res) => {
 router.get("/register", (req, res) => {
   res.render("user/register", { msg: req.session.userLogginErrr });
 });
+
 router.post("/register", (req, res) => {
   userHelper.checkUser(req.body.Email).then((response) => {
     if (response.status) {
@@ -113,6 +114,7 @@ router.get("/apply-job", verifyLogIn, (req, res) => {
     res.render("user/apply-job", { userH: true, userF: true,jobDetails,userId});
   })
 });
+
 router.post('/apply-job',verifyLogIn,(req,res)=>{
   let Image = req.files.Image
   let Resume = req.files.Resume
