@@ -1,0 +1,200 @@
+<!-- Hero Area Start-->
+<div class="slider-area">
+  <div
+    class="single-slider section-overly slider-height2 d-flex align-items-center"
+    data-background="assets/img/hero/about.jpg"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="hero-cap text-center">
+            <h2>Your Jobs Status</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Hero Area End -->
+<!-- Job List Area Start -->
+<div class="job-listing-area pt-120 pb-120">
+  <div class="container">
+    <div class="row">
+      <!-- Right content -->
+      <div class="col-xl-12 col-lg-12 col-md-12">
+        <!-- Featured_job_start -->
+        <section class="featured-job-area">
+          <div class="container">
+
+            {{!-- Start --}}
+            <!-- Count of Job list Start -->
+            <div class="row mt-4 mb-4">
+              <div class="col-lg-12">
+                <div class="count-job mb-35">
+                  <span><b>Applied Jobs :</b></span>
+                  <!-- Select job items start -->
+                  <div class="select-job-items">
+                    
+                  </div>
+                  <!--  Select job items End-->
+                </div>
+              </div>
+            </div>
+            <!-- Count of Job list End -->
+            <!-- single-job-content -->
+            {{#if appliedJobs}}
+                {{#each appliedJobs}}
+              <div class="single-job-items mb-30 ">
+                <div class="job-items">
+                  <div class="company-img">
+                    <a href="/jobdetails?id={{this._id}}"><img
+                        src="../../uploads/job-images/{{this._id}}.jpg"
+                        alt="company-logo"
+                        style="width: 100px;height: 100px;"
+                      /></a>
+                  </div>
+                  <div class="job-tittle">
+                    <a href="/jobdetails?id={{this._id}}"><h4
+                      >{{this.jobName}}</h4></a>
+                    <ul>
+                      <li><i class="fas fa-globe"></i>{{this.instName}}</li>
+                      <li><i
+                          class="fas fa-map-marker-alt"
+                        ></i>{{this.instLoc}}</li>
+                    </ul>
+                    <ul class="mt-1">
+                      <li><i class="fas fa-language"></i>{{this.lang}}</li>
+                      <li><i class="fas fa-clock"></i>{{this.timeSchedule}}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="items-link f-right">
+                  <a href="/jobdetails?id={{this._id}}">View Details</a>
+                  <span>Created On: {{this.createdAt}}</span>
+                </div>
+              </div>
+            {{/each}}
+
+            {{else}}
+            <div class="text-center pb-4 mb-4">
+              <h6>No Applied Jobs Currently...</h4>
+            </div>
+            {{/if}}
+            {{!-- End --}}
+            {{!-- Start --}}
+            <!-- Count of Job list Start -->
+            <div class="row mt-4">
+              <div class="col-lg-12">
+                <div class="count-job mb-35">
+                  <span><b>Approved Jobs</b></span>
+                  <!-- Select job items start -->
+                  <div class="select-job-items">
+                    
+                  </div>
+                  <!--  Select job items End-->
+                </div>
+              </div>
+            </div>
+            <!-- Count of Job list End -->
+            <!-- single-job-content -->
+              {{#if approvedJobs}}
+                {{#each approvedJobs}}
+              <div class="single-job-items mb-30">
+                <div class="job-items">
+                  <div class="company-img">
+                    <a href="/jobdetails?id={{this._id}}"><img
+                        src="../../uploads/job-images/{{this._id}}.jpg"
+                        alt="company-logo"
+                        style="width: 100px;height: 100px;"
+                      /></a>
+                  </div>
+                  <div class="job-tittle">
+                    <a href="/jobdetails?id={{this._id}}"><h4
+                      >{{this.jobName}}</h4></a>
+                    <ul>
+                      <li><i class="fas fa-globe"></i>{{this.instName}}</li>
+                      <li><i
+                          class="fas fa-map-marker-alt"
+                        ></i>{{this.instLoc}}</li>
+                    </ul>
+                    <ul class="mt-1">
+                      <li><i class="fas fa-language"></i>{{this.lang}}</li>
+                      <li><i class="fas fa-clock"></i>{{this.timeSchedule}}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="items-link f-right">
+                  <a href="/jobdetails?id={{this._id}}">View Details</a>
+                  <span>Created On: {{this.createdAt}}</span>
+                </div>
+              </div>
+            {{/each}}
+            {{else}}
+            <div class="text-center pb-4 mb-4">
+              <h6>No Approved Jobs Currently...</h4>
+            </div>
+            {{/if}}
+            {{!-- End --}}
+
+          {{#if rejectedJobs}}
+            {{!-- Start --}}
+            <!-- Count of Job list Start -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="count-job mb-35">
+                  <span><b>Rejected Jobs</b></span>
+                  <!-- Select job items start -->
+                  <div class="select-job-items">
+                    
+                  </div>
+                  <!--  Select job items End-->
+                </div>
+              </div>
+            </div>
+            <!-- Count of Job list End -->
+            <!-- single-job-content -->
+                {{#each rejectedJobs}}
+              <div class="single-job-items mb-30">
+                <div class="job-items">
+                  <div class="company-img">
+                    <a href="/jobdetails?id={{this._id}}"><img
+                        src="../../uploads/job-images/{{this._id}}.jpg"
+                        alt="company-logo"
+                        style="width: 100px;height: 100px;"
+                      /></a>
+                  </div>
+                  <div class="job-tittle">
+                    <a href="/jobdetails?id={{this._id}}"><h4
+                      >{{this.jobName}}</h4></a>
+                    <ul>
+                      <li><i class="fas fa-globe"></i>{{this.instName}}</li>
+                      <li><i
+                          class="fas fa-map-marker-alt"
+                        ></i>{{this.instLoc}}</li>
+                    </ul>
+                    <ul class="mt-1">
+                      <li><i class="fas fa-language"></i>{{this.lang}}</li>
+                      <li><i class="fas fa-clock"></i>{{this.timeSchedule}}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="items-link f-right">
+                  <a href="/jobdetails?id={{this._id}}">View Details</a>
+                  <span>Created On: {{this.createdAt}}</span>
+                </div>
+              </div>
+            {{/each}}
+            {{else}}
+            <div class="text-center pb-4 mb-4">
+              <h6>No Rejected Jobs Currently...</h4>
+            </div>
+            {{/if}}
+            {{!-- End --}}
+          </div>
+        </section>
+        <!-- Featured_job_end -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Job List Area End -->

@@ -44,13 +44,15 @@ router.get("/find-job", verifyLogIn, (req, res) => {
   });
 });
 
-router.get("/about", verifyLogIn, (req, res) => {
+router.get("/about", verifyLogIn,(req, res) => {
   res.render("user/about", { userH: true, userF: true });
 });
-router.get('/applied-jobs',verifyLogIn,(req,res)=>{
-  userHelper.getAppliedJobs(req.session.user._id).then((appliedJobs)=>{
-  res.render("user/applied-jobs", { userH: true, userF: true,appliedJobs });
-  })
+router.get('/job-status',verifyLogIn,async(req,res)=>{
+  let id = req.session.user._id
+  let appliedJobs =await userHelper.getAppliedJobs(id)
+  let approvedJobs =await userHelper.getApprovedJobs(id)
+  let rejectedJobs =await userHelper.getRejectedJobs(id)
+  res.render("user/job-status", { userH: true, userF: true,appliedJobs,approvedJobs,rejectedJobs });
 })
 router.get("/contact", verifyLogIn, (req, res) => {
   res.render("user/contact", { userH: true, userF: true });
