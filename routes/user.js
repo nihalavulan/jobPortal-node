@@ -74,16 +74,21 @@ router.get("/login", (req, res) => {
   }
 });
 
-router.post("/login", (req, res) => {
-  userHelper.doLogin(req.body).then((response) => {
-    if (response.status) {
-      req.session.user = response.user;
-      res.redirect("/");
-    } else {
-      req.session.userLogginErrr = response.Errmsg;
-      res.redirect("/login");
-    }
-  });
+router.post("/login", async(req, res) => {
+  let BannedUser=await userHelper.isBannedUser(req.body.Email)
+  if(BannedUser){
+    res.render('user/banned-user')
+  }else{
+    userHelper.doLogin(req.body).then((response) => {
+      if (response.status) {
+        req.session.user = response.user;
+        res.redirect("/");
+      } else {
+        req.session.userLogginErrr = response.Errmsg;
+        res.redirect("/login");
+      }
+    });
+  }
 });
 
 router.get("/register", (req, res) => {

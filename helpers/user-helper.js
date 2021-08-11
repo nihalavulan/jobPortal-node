@@ -133,4 +133,10 @@ module.exports={
             resolve(allJobs)
         })
     },
+    isBannedUser:(Email)=>{
+        return new Promise(async(resolve,reject)=>{
+            let status =await db.get().collection(collection.BANNED_USERS).find({Email}).count() > 0
+            resolve(status)
+        })
+    }
 }
