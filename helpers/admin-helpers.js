@@ -29,5 +29,11 @@ module.exports={
             let employers =await db.get().collection(collection.EMPLOYER_COLLECTION).find().toArray()
             resolve(employers)
         })
+    },
+    getAllUsers:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let users =await db.get().collection(collection.USERS_COLLECTION).find().toArray()
+            resolve(users)
+        })
     }
 }

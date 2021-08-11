@@ -29,7 +29,9 @@ router.get("/employers", verifyLogIn, (req, res) => {
 });
 
 router.get("/users", verifyLogIn, (req, res) => {
-  res.render("admin/users", { adminH: true });
+  adminHelpers.getAllUsers().then((allUsers)=>{
+    res.render("admin/users", { adminH: true ,allUsers});
+  })
 });
 
 router.get("/login", (req, res) => {
