@@ -59,8 +59,9 @@ router.get("/logout", (req, res) => {
   res.redirect("/admin");
 });
 
-router.get("/settings", verifyLogIn, (req, res) => {
-  res.render("admin/settings", { adminH: true });
+router.get("/settings", verifyLogIn,async (req, res) => {
+  let bannedEmployers =await adminHelpers.getBannedEmployers()
+  res.render("admin/settings", { adminH: true ,bannedEmployers});
 });
 
 router.get("/view-jobs", verifyLogIn, (req, res) => {
@@ -90,6 +91,11 @@ router.get('/ban-employer',verifyLogIn,async(req,res)=>{
   let employer =await adminHelpers.findEmployer(req.query.id)
   adminHelpers.banEmployer(req.query.id,employer).then(()=>{
     res.redirect('/admin/employers')
+  })
+})
+router.get('/unban-employer',verifyLogIn,async(req,res)=>{
+  adminHelpers.unbanEmployer(req.query.id).then(()=>{
+    res.redirect('/admin/settings')
   })
 })
 module.exports = router;

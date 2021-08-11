@@ -59,5 +59,22 @@ module.exports={
                 })
             })
         })
+    },
+    getBannedEmployers:()=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.BANNED_EMPLOYERS).find().toArray().then((banned)=>{
+                resolve(banned)
+            })
+        })
+    },
+    unbanEmployer:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            let employer =await db.get().collection(collection.BANNED_EMPLOYERS).findOne({_id:ObjectId(id)})
+            db.get().collection(collection.BANNED_EMPLOYERS).deleteOne({_id:ObjectId(id)}).then(()=>{
+                db.get().collection(collection.EMPLOYER_COLLECTION).insertOne(employer).then(()=>{
+                    resolve()
+                })
+            })
+        })
     }
 }
