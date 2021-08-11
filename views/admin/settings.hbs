@@ -1,9 +1,37 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
+					<h1 class="h3 mb-3"><strong>Banned</strong> Employers</h1>
 
-				<h1>Thiss is settingsss </h1>
+				<div class="row">
+						<div class="col-12 col-lg-12 col-xxl-12 d-flex">
+							<div class="card flex-fill">
+								<table class="table table-hover my-0">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th class="d-none d-xl-table-cell">Email</th>
+											<th class="d-none d-xl-table-cell">CreatedOn</th>
+											<th class="d-none d-md-table-cell">Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										{{#each allUsers}}
+										<tr>
+											<td class="text-success"><b>{{this.Name}}</b></td>
+											<td class="d-none d-xl-table-cell">{{this.Email}}</td>
+											<td class="d-none d-xl-table-cell">{{this.createdAt}}</td>
+											<td class="d-none d-md-table-cell">
+												<a href="" class="p-2 bg-warning m-1" data-toggle="tooltip" data-placement="top" title="Ban user"><i class="align-middle" data-feather="eye-off"></i></a>
+												<a href="" class="p-2 bg-danger m-1"  data-toggle="tooltip" data-placement="top" title="Delete user"><i class="align-middle" data-feather="delete"></i></a>
+											</td>
+										</tr>
+										{{/each}}
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
 					
 
 

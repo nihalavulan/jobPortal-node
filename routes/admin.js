@@ -80,4 +80,16 @@ router.get("/delete-job", verifyLogIn, (req, res) => {
     });
   });
 });
+
+router.get('/delete-employer',verifyLogIn,(req,res)=>{
+  adminHelpers.deleteEmployer(req.query.id).then(()=>{
+    res.redirect('/admin/employers')
+  })
+})
+router.get('/ban-employer',verifyLogIn,async(req,res)=>{
+  let employer =await adminHelpers.findEmployer(req.query.id)
+  adminHelpers.banEmployer(req.query.id,employer).then(()=>{
+    res.redirect('/admin/employers')
+  })
+})
 module.exports = router;

@@ -4,5 +4,6 @@ module.exports={
     USERS_COLLECTION : 'users',
     RESUME_REQUESTS : 'resume-requests',
     APPROVED_REQUESTS : 'approved-requests',
-    REJECTED_REQUESTS : 'rejected-requests'
+    REJECTED_REQUESTS : 'rejected-requests',
+    BANNED_EMPLOYERS : 'banned-employers'
 }
