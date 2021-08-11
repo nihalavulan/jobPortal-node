@@ -70,16 +70,21 @@ router.get("/login", (req, res) => {
     req.session.empLogginErr = false;
   }
 });
-router.post("/login", (req, res) => {
-  employerHelper.doLogin(req.body).then((response) => {
-    if (response.status) {
-      req.session.employer = response.employer;
-      res.redirect("/employer");
-    } else {
-      req.session.empLogginErr = response.Errmsg;
-      res.redirect("/employer/login");
-    }
-  });
+router.post("/login", async(req, res) => {
+  let emplyerBanned =await employerHelper.isEmplyerBanned(req.body.email)
+  if(emplyerBanned){
+    res.render('employer/banned-employer')
+  }else{
+    employerHelper.doLogin(req.body).then((response) => {
+      if (response.status) {
+        req.session.employer = response.employer;
+        res.redirect("/employer");
+      } else {
+        req.session.empLogginErr = response.Errmsg;
+        res.redirect("/employer/login");
+      }
+    });
+  }
 });
 
 //employer register

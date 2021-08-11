@@ -130,8 +130,13 @@ module.exports={
                 resolve(response)
             })
         })
+    },
+    isEmplyerBanned:(email)=>{
+        return new Promise(async(resolve,reject)=>{
+            let status =await db.get().collection(collection.BANNED_EMPLOYERS).find({email}).count() > 0
+            resolve(status)
+        })
     }
-
 }
 
 
