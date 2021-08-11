@@ -61,7 +61,8 @@ router.get("/logout", (req, res) => {
 
 router.get("/settings", verifyLogIn,async (req, res) => {
   let bannedEmployers =await adminHelpers.getBannedEmployers()
-  res.render("admin/settings", { adminH: true ,bannedEmployers});
+  let bannedUsers =await adminHelpers.getBannedUsers()
+  res.render("admin/settings", { adminH: true ,bannedEmployers,bannedUsers});
 });
 
 router.get("/view-jobs", verifyLogIn, (req, res) => {
@@ -95,6 +96,21 @@ router.get('/ban-employer',verifyLogIn,async(req,res)=>{
 })
 router.get('/unban-employer',verifyLogIn,async(req,res)=>{
   adminHelpers.unbanEmployer(req.query.id).then(()=>{
+    res.redirect('/admin/settings')
+  })
+})
+router.get('/delete-user',verifyLogIn,(req,res)=>{
+  adminHelpers.deleteUser(req.query.id).then(()=>{
+    res.redirect('/admin/employers')
+  })
+})
+router.get('/ban-user',verifyLogIn,async(req,res)=>{
+  adminHelpers.banUser(req.query.id).then(()=>{
+    res.redirect('/admin/users')
+  })
+})
+router.get('/unban-user',verifyLogIn,async(req,res)=>{
+  adminHelpers.unbanUser(req.query.id).then(()=>{
     res.redirect('/admin/settings')
   })
 })

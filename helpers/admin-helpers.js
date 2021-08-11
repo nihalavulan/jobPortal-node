@@ -76,5 +76,39 @@ module.exports={
                 })
             })
         })
+    },
+    deleteUser:(id)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.USERS_COLLECTION).deleteOne({_id:ObjectId(id)}).then(()=>{
+                resolve()
+            })
+        })
+    },
+    banUser:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            let employer =await db.get().collection(collection.USERS_COLLECTION).findOne({_id:ObjectId(id)})
+            db.get().collection(collection.USERS_COLLECTION).deleteOne({_id:ObjectId(id)}).then(()=>{
+                db.get().collection(collection.BANNED_USERS).insertOne(employer).then(()=>{
+                    resolve()
+                })
+            })
+        })
+    },
+    getBannedUsers:()=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.BANNED_USERS).find().toArray().then((banned)=>{
+                resolve(banned)
+            })
+        })
+    },
+    unbanUser:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            let user =await db.get().collection(collection.BANNED_USERS).findOne({_id:ObjectId(id)})
+            db.get().collection(collection.BANNED_USERS).deleteOne({_id:ObjectId(id)}).then(()=>{
+                db.get().collection(collection.USERS_COLLECTION).insertOne(user).then(()=>{
+                    resolve()
+                })
+            })
+        })
     }
 }

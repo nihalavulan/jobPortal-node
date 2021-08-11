@@ -51,14 +51,13 @@
 										</tr>
 									</thead>
 									<tbody>
-										{{#each allUsers}}
+										{{#each bannedUsers}}
 										<tr>
 											<td class="text-success"><b>{{this.Name}}</b></td>
 											<td class="d-none d-xl-table-cell">{{this.Email}}</td>
 											<td class="d-none d-xl-table-cell">{{this.createdAt}}</td>
 											<td class="d-none d-md-table-cell">
-												<a href="" class="p-2 bg-warning m-1" data-toggle="tooltip" data-placement="top" title="Ban user"><i class="align-middle" data-feather="eye-off"></i></a>
-												<a href="" class="p-2 bg-danger m-1"  data-toggle="tooltip" data-placement="top" title="Delete user"><i class="align-middle" data-feather="delete"></i></a>
+												<a href="/admin/unban-user?id={{this._id}}" class="p-2 bg-warning m-1" data-toggle="tooltip" data-placement="top" title="UnBan Employer"><i class="align-middle" data-feather="eye" onclick="return confirm('are you sure to UnBan {{this.name}}?')"></i></a>
 											</td>
 										</tr>
 										{{/each}}

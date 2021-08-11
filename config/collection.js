@@ -5,5 +5,6 @@ module.exports={
     RESUME_REQUESTS : 'resume-requests',
     APPROVED_REQUESTS : 'approved-requests',
     REJECTED_REQUESTS : 'rejected-requests',
-    BANNED_EMPLOYERS : 'banned-employers'
+    BANNED_EMPLOYERS : 'banned-employers',
+    BANNED_USERS : 'banned-users'
 }
