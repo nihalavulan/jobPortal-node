@@ -136,6 +136,22 @@ module.exports={
             let status =await db.get().collection(collection.BANNED_EMPLOYERS).find({email}).count() > 0
             resolve(status)
         })
+    },
+    getCount:(employerId)=>{
+        let COUNT = {}
+        return new Promise(async(resolve,reject)=>{
+            let totalJobs =await db.get().collection(collection.JOBS_COLLECTION).find({employerId:ObjectId(employerId)}).count()
+            let jobRequests =await db.get().collection(collection.RESUME_REQUESTS).find({employerId:ObjectId(employerId)}).count()
+            let approvedRequests =await db.get().collection(collection.APPROVED_REQUESTS).find({employerId:ObjectId(employerId)}).count()
+            let rejectedRequests =await db.get().collection(collection.REJECTED_REQUESTS).find({employerId:ObjectId(employerId)}).count()
+            let totalResume =await jobRequests+approvedRequests+rejectedRequests
+            COUNT.totalJobs =totalJobs
+            COUNT.jobRequests =jobRequests
+            COUNT.approvedRequests =approvedRequests
+            COUNT.rejectedRequests =rejectedRequests
+            COUNT.totalResume =totalResume
+            resolve(COUNT)
+        })
     }
 }
 

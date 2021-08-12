@@ -20,10 +20,11 @@ const verifyLogIn = (req, res, next) => {
 };
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
+router.get("/",async function (req, res, next) {
   employer = req.session.employer;
   if (employer) {
-    res.render("employer/home", { employerH: true, employer });
+    let Count =await employerHelper.getCount(req.session.employer._id)
+    res.render("employer/home", { employerH: true, employer ,Count});
   } else {
     res.redirect("/employer/login");
   }
