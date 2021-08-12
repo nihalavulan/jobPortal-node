@@ -47,7 +47,7 @@ module.exports={
     },
     getEmployersJobs:(employerId)=>{
         return new Promise(async(resolve,reject)=>{
-           let allJobs =await  db.get().collection(collection.JOBS_COLLECTION).find({employerId}).toArray()
+           let allJobs =await  db.get().collection(collection.JOBS_COLLECTION).find({employerId:ObjectId(employerId)}).toArray()
            resolve(allJobs)
         })
     },

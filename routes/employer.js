@@ -115,7 +115,7 @@ router.get("/add-job", verifyLogIn, (req, res) => {
   res.render("employer/add-job", { employerH: true, employer });
 });
 router.post("/add-job", verifyLogIn, (req, res) => {
-  employerId = req.session.employer._id;
+  employerId = ObjectId(req.session.employer._id)
   jobDetails = { ...req.body, employerId, createdAt: today };
   employerHelper.addJob(jobDetails).then((jobId) => {
     res.redirect("/employer/jobs");

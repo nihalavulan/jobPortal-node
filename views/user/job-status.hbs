@@ -136,7 +136,6 @@
             {{/if}}
             {{!-- End --}}
 
-          {{#if rejectedJobs}}
             {{!-- Start --}}
             <!-- Count of Job list Start -->
             <div class="row">
@@ -153,6 +152,7 @@
             </div>
             <!-- Count of Job list End -->
             <!-- single-job-content -->
+          {{#if rejectedJobs}}
                 {{#each rejectedJobs}}
               <div class="single-job-items mb-30">
                 <div class="job-items">
