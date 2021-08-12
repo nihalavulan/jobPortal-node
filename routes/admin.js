@@ -13,10 +13,11 @@ const verifyLogIn = (req, res, next) => {
 };
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
+router.get("/",async function(req, res, next) {
   let admin = req.session.admin;
   if (admin) {
-    res.render("admin/home", { adminH: true });
+  let Count =await adminHelpers.getCount()
+    res.render("admin/home", { adminH: true ,Count});
   } else {
     res.redirect("/admin/login");
   }

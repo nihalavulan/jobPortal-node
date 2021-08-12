@@ -110,5 +110,19 @@ module.exports={
                 })
             })
         })
+    },
+    getCount:()=>{
+        let COUNT = {}
+        return new Promise(async(resolve,reject)=>{
+            let employers =await db.get().collection(collection.EMPLOYER_COLLECTION).count()
+            let jobseekers =await db.get().collection(collection.USERS_COLLECTION).count()
+            let bannedEmployers =await db.get().collection(collection.BANNED_EMPLOYERS).count()
+            let bannedJobdeekers =await db.get().collection(collection.BANNED_USERS).count()
+            COUNT.employers =employers
+            COUNT.jobseekers=jobseekers
+            COUNT.bannedEmployers=bannedEmployers
+            COUNT.bannedJobdeekers=bannedJobdeekers
+            resolve(COUNT)
+        })
     }
 }
