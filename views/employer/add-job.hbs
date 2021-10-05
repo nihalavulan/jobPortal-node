@@ -11,26 +11,26 @@
             <form action="/employer/add-job" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="instName">Your Institute Name :</label>
-                    <input type="text" class="form-control" id="instName" name="instName">
+                    <input type="text" class="form-control" id="instName" required name="instName">
                 </div>
                 <div class="form-group">
                     <label for="instLoc">Institute Location :</label>
-                    <input type="text" class="form-control" id="instLoc" name="instLoc">
+                    <input type="text" class="form-control" id="instLoc" required name="instLoc">
                 </div>
                 <div class="form-group">
                     <label for="jobName">Job Name :</label>
-                    <input type="text" class="form-control" id="jobName" name="jobName">
+                    <input type="text" class="form-control" id="jobName" required name="jobName">
                 </div>
                 <div class="form-group">
                     <label for="jobName">Time schedule :</label>
                     <div class="form-check ml-2">
-                    <input class="form-check-input" type="radio" name="timeSchedule" id="flexRadioDefault2" checked value="full-time">
+                    <input class="form-check-input" type="radio" required name="timeSchedule" id="flexRadioDefault2" checked value="full-time">
                     <label class="form-check-label" for="flexRadioDefault2">
                     Full time
                     </label>
                     </div>
                     <div class="form-check ml-2">
-                    <input class="form-check-input" type="radio" name="timeSchedule" id="flexRadioDefault1" value="part-time">
+                    <input class="form-check-input" type="radio" required name="timeSchedule" id="flexRadioDefault1" value="part-time">
                     <label class="form-check-label" for="flexRadioDefault1">
                         Part time
                     </label>
@@ -58,27 +58,27 @@
                 </div>
                 <div class="form-group">
                     <label for="skills">Skills :</label>
-                    <input type="text" class="form-control" id="skills" name="skills">
+                    <input type="text" class="form-control" id="skills" required name="skills">
                 </div>
                 <div class="form-group">
                     <label for="qualifications">Qualifications :</label>
-                    <input type="text" class="form-control" id="qualifications" name="qualifications">
+                    <input type="text" class="form-control" id="qualifications" required name="qualifications">
                 </div>
                 <div class="form-group">
                     <label for="expreq">Experience Required :</label>
-                    <input type="text" class="form-control" id="expreq" name="expreq">
+                    <input type="text" class="form-control" id="expreq" required name="expreq">
                 </div>
                 <div class="form-group">
                     <label for="lang">Language Needed :</label>
-                    <input type="text" class="form-control" id="lang" name="lang">
+                    <input type="text" class="form-control" id="lang" required name="lang">
                 </div>
                 <div class="form-group">
                     <label for="pin">Pin Number :</label>
-                    <input type="text" class="form-control" id="pin" name="pin">
+                    <input type="text" class="form-control" id="pin" required name="pin">
                 </div>
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <textarea class="form-control" rows="5" name="description" id="description"></textarea>
+                    <textarea class="form-control" rows="5" required name="description" id="description"></textarea>
                 </div>
                 <div class="section-tittle text-center">
                     <button type="submit" class="btn btn-primary">Create</button>
