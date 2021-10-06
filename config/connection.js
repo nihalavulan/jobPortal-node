@@ -4,7 +4,7 @@ const state = {
     db:null
 }
 module.exports.connect = function(done){
-    const url = 'mongodb+srv://nihalavulan:N9048133817l@cluster0.6np8u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+    const url = 'mongodb://localhost:27017'
     const dbname = 'job-portal'
 
     mongoClient.connect(url,{ useUnifiedTopology: true },(err,data)=>{
